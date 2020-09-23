@@ -7,9 +7,11 @@
                 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        dct = { i : nums[i] for i in range(0, len(nums) ) }
-        for x in range(0,len(nums)):
-            y = target - dct[x]
-            for key, value in dct.items():
-                if value == y and x != key:
-                    return [x,key]
+        if len(nums) <=1:
+            return False
+        hmap={}
+        for i in range(len(nums)):
+            if nums[i] in hmap:
+                return [hmap[nums[i]], i]
+            else:
+                hmap[target - nums[i]] = i
